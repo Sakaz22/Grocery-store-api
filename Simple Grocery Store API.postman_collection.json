@@ -124,13 +124,102 @@
 			"response": []
 		},
 		{
+			"name": "Create new cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/carts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"carts"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "coffee",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "V_LWY7JcGRM8G5uuLLM82",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "cartId",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/carts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"carts"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "coffee",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "V_LWY7JcGRM8G5uuLLM82",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 19 Nov 2024 07:41:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"31-eIsyaZlGTbJG2J8LuBAirzoiFpc\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"created\": true,\n    \"cartId\": \"B1sJuPOJ6npdL5sXPQuYO\"\n}"
+				}
+			]
+		},
+		{
 			"name": "Add item to cart",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"productId\": 8739\r\n}",
+					"raw": "{\r\n    \"productId\": 5478\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -158,12 +247,85 @@
 					"variable": [
 						{
 							"key": "cartId",
-							"value": "V_LWY7JcGRM8G5uuLLM82"
+							"value": "B1sJuPOJ6npdL5sXPQuYO"
 						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "productId",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": 5478\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/carts/:cartId/items/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								""
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "coffee",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "B1sJuPOJ6npdL5sXPQuYO"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 19 Nov 2024 07:45:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"22-A64HPh65KG7aNV5lyZ16VykRFjY\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"created\": true,\n    \"itemId\": 29192117\n}"
+				}
+			]
 		},
 		{
 			"name": "Register API client",
@@ -172,7 +334,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"clientName\": \"Mr Man\",\r\n    \"clientEmail\": \"mrman@manly.com\"\r\n}",
+					"raw": "{\r\n    \"clientName\": \"Mr. Man\",\r\n    \"clientEmail\": \"mrdotman@manly.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -212,10 +374,16 @@
 					]
 				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"cartId\": \"B1sJuPOJ6npdL5sXPQuYO\",\r\n    \"customerName\": \"{{$randomFullName}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -239,7 +407,275 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "orderId",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartId\": \"B1sJuPOJ6npdL5sXPQuYO\",\r\n    \"customerName\": \"Mr. Man\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/orders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "coffee",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 19 Nov 2024 07:45:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"32-wJ3Z40XZEYd+8YfopQCzd/7bvKU\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"created\": true,\n    \"orderId\": \"iYiG77aGd5_NtBGyDBeAS\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all orders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/orders",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"orders"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "coffee",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "orderId",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartId\": \"B1sJuPOJ6npdL5sXPQuYO\",\r\n    \"customerName\": \"Mr. Man\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/orders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "coffee",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 19 Nov 2024 07:45:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"32-wJ3Z40XZEYd+8YfopQCzd/7bvKU\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"created\": true,\n    \"orderId\": \"iYiG77aGd5_NtBGyDBeAS\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Order",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerName\": \"Mr. J Man\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/orders/:orderId",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "coffee",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "orderId",
+							"value": "iYiG77aGd5_NtBGyDBeAS"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "orderId",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartId\": \"B1sJuPOJ6npdL5sXPQuYO\",\r\n    \"customerName\": \"Mr. Man\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/orders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "coffee",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 19 Nov 2024 07:45:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"32-wJ3Z40XZEYd+8YfopQCzd/7bvKU\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"created\": true,\n    \"orderId\": \"iYiG77aGd5_NtBGyDBeAS\"\n}"
+				}
+			]
 		}
 	],
 	"event": [
